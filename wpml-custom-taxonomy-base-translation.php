@@ -18,7 +18,7 @@
  * 
  *
  *
- 
+
     USAGE:
     Include this file to your function.php
 
@@ -45,6 +45,9 @@
 
  */
 
+
+$rewrite_bases = get_my_rewrites();
+$languages = get_wpml_available_languages();
 
 /* 
  * Put together our BASE rewrites for languages
@@ -112,8 +115,7 @@ function blueglass_rewrite_rules( $aRules ){
  */ 
 add_filter( 'term_link', 'blueglass_term_link_replace', 999, 3 );
 function blueglass_term_link_replace( $term_link, $term, $taxonomy ) {
-    $rewrite_bases = get_my_rewrites();
-    $languages = get_wpml_available_languages();
+    global $rewrite_bases, $languages;
 
     if( !empty($rewrite_bases) && !empty($languages) ):
         foreach ($rewrite_bases as $base => $bases) {
